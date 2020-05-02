@@ -28,6 +28,8 @@ public class Login extends JFrame {
 	private JPasswordField txtPassword;
 	
 	DatabaseHelper helper;
+	
+	//wassup
 
 	/**
 	 * Launch the application.
