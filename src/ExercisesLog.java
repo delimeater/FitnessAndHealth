@@ -259,7 +259,7 @@ public class ExercisesLog extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int userID = user.getID();
 				helper = new DatabaseHelper();
-				JDBCCategoryDataset dataset = helper.caloriesGraphDataset(userID);
+				JDBCCategoryDataset dataset = helper.caloriGraphDataset(userID);
 				JFreeChart chart = ChartFactory.createLineChart("Daily Calories Burned Graph", "Date", "Calories", dataset,PlotOrientation.VERTICAL,false,true,true);
 				BarRenderer renderer = null;
 				CategoryPlot plot = null;

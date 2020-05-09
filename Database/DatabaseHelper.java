@@ -348,7 +348,7 @@ public class DatabaseHelper {
 		return dataExist;
 	}
 
-	public JDBCCategoryDataset caloriesGraphDataset(int userID) {
+	public JDBCCategoryDataset caloriGraphDataset1(int userID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
