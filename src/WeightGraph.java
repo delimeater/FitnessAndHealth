@@ -46,7 +46,7 @@ public class WeightGraph extends JFrame {
 		
 	}
 
-	//Weight graph Launch
+	//Weight graph launch
 	public void weightGraph(User newUser) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -91,7 +91,7 @@ public class WeightGraph extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				double weight = -1;
 				
-				//Check today's weight is empty or not
+				//Check today's weight is empty
 				if(txtWeight.getText().isEmpty()) {
 					weight = -1;
 					JOptionPane.showMessageDialog(null, "Insert Today's Weight");
@@ -120,6 +120,7 @@ public class WeightGraph extends JFrame {
 		btnUpdateWeight.setBounds(377, 16, 132, 35);
 		contentPane.add(btnUpdateWeight);
 		
+		//Button to show weight graph
 		JButton btnShowGraph = new JButton("Show Graph");
 		btnShowGraph.setForeground(Color.WHITE);
 		btnShowGraph.setFont(new Font("Verdana", Font.BOLD, 14));
@@ -142,6 +143,7 @@ public class WeightGraph extends JFrame {
 		btnShowGraph.setBounds(521, 16, 184, 35);
 		contentPane.add(btnShowGraph);
 		
+		//Button to load table of weights
 		JButton btnLoad = new JButton("Load Table");
 		btnLoad.setForeground(Color.WHITE);
 		btnLoad.setFont(new Font("Verdana", Font.BOLD, 14));
@@ -162,6 +164,7 @@ public class WeightGraph extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
+		//Button to navigate to exercise log
 		JButton btnShowExercisesLog = new JButton("Show Exercises Log");
 		btnShowExercisesLog.setForeground(Color.WHITE);
 		btnShowExercisesLog.addActionListener(new ActionListener() {
@@ -184,6 +187,7 @@ public class WeightGraph extends JFrame {
 		setResizable(false);
 	}
 	
+	//Weight conversion
 	protected double convertPoundsToKilogram(double weight) {
 		// TODO Auto-generated method stub
 		double newWeight = 0;

@@ -168,6 +168,7 @@ public class Login extends JFrame {
 				
 	}
 	
+	//Navigate to weight graph after login
 	public void gotoWeightGraph(User user) {
 		WeightGraph graph  = new WeightGraph(user);
 		graph.weightGraph(user);

@@ -198,8 +198,6 @@ public class Registration extends JFrame {
 		lblGender.setBounds(459, 367, 400, 25);
 		contentPane.add(lblGender);
 		
-		
-		
 		JLabel lblWeightGoal = new JLabel("Height (ft)");
 		lblWeightGoal.setForeground(new Color(0, 0, 0));
 		lblWeightGoal.setFont(new Font("Verdana", Font.BOLD, 18));
@@ -227,7 +225,7 @@ public class Registration extends JFrame {
 				
 		//Gender drop box
 		JComboBox txtGender = new JComboBox();
-		txtGender.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female"}));
+		txtGender.setModel(new DefaultComboBoxModel(new String[] {"Male", "Female", "Other"}));
 		txtGender.setEditable(true);
 		JTextField text = ((JTextField) txtGender.getEditor().getEditorComponent());
         text.setBackground(Color.WHITE);
@@ -245,6 +243,7 @@ public class Registration extends JFrame {
 		txtDOB.setBounds(459, 316, 400, 35);
 		contentPane.add(txtDOB);
 		
+		//
 		JLabel lblNewLabel_1 = new JLabel("Already have Account");
 		lblNewLabel_1.setFont(new Font("Verdana", Font.PLAIN, 14));
 		lblNewLabel_1.setBounds(459, 602, 153, 25);
@@ -268,6 +267,7 @@ public class Registration extends JFrame {
 		txtPassword.setBounds(459, 156, 400, 35);
 		contentPane.add(txtPassword);
 		
+		//Registration button, update new profile into database
 		JButton btnNewButton = new JButton("Registration");
 		btnNewButton.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -279,6 +279,7 @@ public class Registration extends JFrame {
 				String Password = txtPassword.getText().toString();
 				String Name = txtName.getText().toString();
 				
+				//Option to add profile image
 				if(profile_pic == null) {
 					try {
 						Path path  = Paths.get("Images/defaultProfilePic.png");

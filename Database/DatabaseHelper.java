@@ -347,4 +347,9 @@ public class DatabaseHelper {
 		}
 		return dataExist;
 	}
+
+	public JDBCCategoryDataset caloriesGraphDataset(int userID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

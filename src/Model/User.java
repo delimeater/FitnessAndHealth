@@ -2,6 +2,7 @@ package Model;
 
 public class User {
 	
+	//Variables
 	private int ID;
 	private String Username;
 	private String Password;

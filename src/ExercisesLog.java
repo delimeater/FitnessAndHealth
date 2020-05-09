@@ -55,9 +55,7 @@ public class ExercisesLog extends JFrame {
 	String oldDateOfExercise = null;
 	
 
-	/**
-	 * Launch the application.
-	 */
+	//Launch the application.
 	public void exercisesLog(User newUser) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -72,9 +70,7 @@ public class ExercisesLog extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	//Framework of exercise log
 	public ExercisesLog(User user) {
 		
 		this.user = user;
@@ -98,13 +94,13 @@ public class ExercisesLog extends JFrame {
 				int row = table.getSelectedRow();
 				int ID = Integer.parseInt(table.getModel().getValueAt(row, 0).toString());
 				ExerciseLogModel log = helper.getExerciseLogModel(ID);
-				setFeilds(log);
+				setFields(log);
 				oldDateOfExercise = log.getDateOfExercise();
 			}
 		});
 		scrollPane.setViewportView(table);
-		
-		JButton btnGotoWeightGraph = new JButton("<---Goto Weight Graph");
+		//Button to navigate back to weight graph
+		JButton btnGotoWeightGraph = new JButton("Go to Weight Graph");
 		btnGotoWeightGraph.setForeground(Color.WHITE);
 		btnGotoWeightGraph.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -117,6 +113,7 @@ public class ExercisesLog extends JFrame {
 		btnGotoWeightGraph.setBounds(11, 393, 210, 35);
 		contentPane.add(btnGotoWeightGraph);
 		
+		//Labels
 		JLabel lblExerciseName = new JLabel("Exercise Name");
 		lblExerciseName.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblExerciseName.setBounds(11, 13, 209, 20);
@@ -147,6 +144,7 @@ public class ExercisesLog extends JFrame {
 		txtNumberOfRep.setBounds(13, 170, 207, 25);
 		contentPane.add(txtNumberOfRep);
 		
+		//Save exercise to database
 		btnSave = new JButton("Save");
 		btnSave.setForeground(Color.WHITE);
 		btnSave.addActionListener(new ActionListener() {
@@ -171,7 +169,7 @@ public class ExercisesLog extends JFrame {
 							ExerciseLogModel log = new ExerciseLogModel(userID,"N/A",0,0,0,dateOfExercise,restDay);
 							helper.insertExerciseLog(log);
 							loadData();
-							clearFeilds();
+							clearFields();
 						}else {
 							JOptionPane.showMessageDialog(null, "Sorry!!!!\nYou can't set "+dateOfExercise+" to be Rest day");
 						}
@@ -180,7 +178,7 @@ public class ExercisesLog extends JFrame {
 						ExerciseLogModel log = new ExerciseLogModel(userID,exerciseName,noOfSets,noOfReps,calories,dateOfExercise,restDay);
 						helper.insertExerciseLog(log);
 						loadData();
-						clearFeilds();
+						clearFields();
 					}
 				}
 				
@@ -192,6 +190,7 @@ public class ExercisesLog extends JFrame {
 		btnSave.setBounds(11, 304, 89, 35);
 		contentPane.add(btnSave);
 		
+		//Update exercise in database
 		btnUpdate = new JButton("Update");
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.addActionListener(new ActionListener() {
@@ -209,14 +208,14 @@ public class ExercisesLog extends JFrame {
 						ExerciseLogModel log = new ExerciseLogModel(userID,"N/A",0,0,0,oldDateOfExercise,restDay);
 						helper.insertExerciseLog(log);
 						loadData();
-						clearFeilds();
+						clearFields();
 					}else {
 						JOptionPane.showMessageDialog(null, "Sorry!!!!\nYou can't set "+oldDateOfExercise+" to be Rest day");
 					}
 				}else {
 					ExerciseLogModel log = new ExerciseLogModel(userID,exerciseName,noOfSets,noOfReps,calories,oldDateOfExercise,restDay);
 					helper.updateExerciseLog(log);
-					clearFeilds();
+					clearFields();
 				}
 			}
 		});
@@ -254,17 +253,18 @@ public class ExercisesLog extends JFrame {
 		txtCaloriesBurn.setBounds(13, 235, 207, 25);
 		contentPane.add(txtCaloriesBurn);
 		
+		//Button to display graph
 		JButton btnShowGraph = new JButton("Show Graph");
 		btnShowGraph.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int userID = user.getID();
 				helper = new DatabaseHelper();
-				JDBCCategoryDataset dataset = helper.caloriGraphDataset(userID);
-				JFreeChart chart = ChartFactory.createLineChart("Daily Calorie Burned Graph", "Date", "Calories", dataset,PlotOrientation.VERTICAL,false,true,true);
+				JDBCCategoryDataset dataset = helper.caloriesGraphDataset(userID);
+				JFreeChart chart = ChartFactory.createLineChart("Daily Calories Burned Graph", "Date", "Calories", dataset,PlotOrientation.VERTICAL,false,true,true);
 				BarRenderer renderer = null;
 				CategoryPlot plot = null;
 				renderer = new BarRenderer();
-				ChartFrame frame = new ChartFrame("Daily Calorie Graph", chart);
+				ChartFrame frame = new ChartFrame("Daily Calories Burned Graph", chart);
 				frame.setVisible(true);
 				frame.setSize(900,420);
 			}
@@ -279,7 +279,7 @@ public class ExercisesLog extends JFrame {
 		setResizable(false);
 	}
 	
-	public void clearFeilds() {
+	public void clearFields() {
 		txtExerciseName.setText("");
 		txtNumberOfSets.setText("");
 		txtNumberOfRep.setText("");
@@ -287,7 +287,7 @@ public class ExercisesLog extends JFrame {
 		cbRestDay.setSelected(false);
 	}
 	
-	public void setFeilds(ExerciseLogModel log) {
+	public void setFields(ExerciseLogModel log) {
 		txtExerciseName.setText(log.getExerciseName());
 		txtNumberOfSets.setText(""+log.getNoOfSets());
 		txtNumberOfRep.setText(""+log.getNoOfReps());
@@ -300,6 +300,7 @@ public class ExercisesLog extends JFrame {
 		
 	}
 	
+	//Load data
 	public void loadData() {
 		helper = new DatabaseHelper();
 		ResultSet rs = helper.setExerciseTableDataset(user.getID());
